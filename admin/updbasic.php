@@ -6,9 +6,9 @@
 	} 
 	  
 	// define variables 
-	$fieldName = array("ID","Name","Designation", "Joining Date", "Email", "Country","Other");
-	$valueField = array("","","","","","","");
-	$errorField= array("","","","","","","");
+	$fieldName = array("School Name","Moto", "Date of Establisment", "Name of head/principal","About", "Contact", "Server Name", "User Name","Password","Database Name");
+	$valueField = array("","","","","","","","","","");
+	$errorField= array("","","","","","","","","","");
 	$errorStatus = 0;/*No submit, No error*/
 	$dbErrorMsg = "";
 	
@@ -16,34 +16,35 @@
 	
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$errorStatus = 1; /*Submitted and No error*/
-		validation($_POST["id"],0) ;
-		validation($_POST["name"],1) ;		
-		/*Checkbox create problem: not set designation*/
-		$_POST["designation"] = empty($_POST["designation"])? "": $_POST["designation"];
-		validation($_POST["designation"],2) ;
-		validation($_POST["joiningdate"],3) ;
-		validation($_POST["email"],4) ;
-		validation($_POST["country"],5) ;
-		validation($_POST["other"],6) ;	
+		validation($_POST["schoolname"],0) ;		
+		validation($_POST["moto"],1) ;
+		validation($_POST["estdate"],2) ;
+		validation($_POST["hpname"],3) ;
+		validation($_POST["about"],4);
+		validation($_POST["contact"],5);
+		validation($_POST["server"],6) ;
+		validation($_POST["user"],7) ;
+		
+		/*Can be Empty, validation($_POST["password"],6) ;*/
+		$data = trim($_POST["password"]);/* removes whitespace = {space,newline etc} both sides of a string*/
+		$data = stripslashes($data);/*Remove the backslash*/
+		$data = htmlspecialchars($data);/*converts HTML entities to some predefined characters*/
+		$valueField[8] = $data;
+		validation($_POST["dbname"],9);	
+		
+		$id = $_POST["id"];
 	}
 
 	if($errorStatus ==1){
 		include("db.php");
 		 
-		$sql = "SELECT * FROM teachers WHERE id = '$valueField[0]'";
-		$result = mysqli_query($conn, $sql);
-		$count = mysqli_num_rows($result);
-		if($count == 1) {
-			$sql = "UPDATE teachers SET name='$valueField[1]', designation='$valueField[2]', joiningdate='$valueField[3]', email='$valueField[4]', country='$valueField[5]', other='$valueField[6]' WHERE id = '$valueField[0]'";
+		$sql = "UPDATE basicinfo SET schoolname='$valueField[0]', moto='$valueField[1]', estdate='$valueField[2]', hpname='$valueField[3]', about='$valueField[4]', contact='$valueField[5]', server = '$valueField[6]', user= '$valueField[7]', pass = '$valueField[8]', dbName='$valueField[9]' WHERE id = '$id'";
 			//echo $sql;
-			if (mysqli_query($conn, $sql)) {
+		if (mysqli_query($conn, $sql)) {
 				$dbErrorMsg=  "Updated successfully<br>";
-			} else {
+		} else {
 				$dbErrorMsg =  "Error: " . mysqli_error($conn);
-			} 
-		}
-		else
-				$dbErrorMsg =  "Teacher ID is Invalid<br>";	
+		} 
 	}	  
 	require 'header.php';
 	require 'menu.php';
