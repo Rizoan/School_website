@@ -147,21 +147,6 @@
 		} else {
 		  echo "Error creating table: " . mysqli_error($conn);
 		}
-		
-		$sql = "CREATE TABLE IF NOT EXISTS notice (
-		id INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-		title VARCHAR(200) NOT NULL, 
-		description VARCHAR(300) NOT NULL, 
-		lastdate DATE NOT NULL, 
-		filepath VARCHAR(100) NOT NULL
-		)"; 
-		if (mysqli_query($conn, $sql)) {
-		  echo "<br>Table <b>notice</b> created successfully";
-		} else {
-		  echo "Error creating table: " . mysqli_error($conn);
-		}
-		
-		
 	    mysqli_close($conn);
 	    /*Self delete function is unlike*/
 	    /*unlink(__FILE__);*/

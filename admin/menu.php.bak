@@ -3,6 +3,5 @@
 			<a href="delt.php">Delete Teacher Information</a>
 			<a href="updt.php">Update Teacher Information</a>
 			<a href="updbasic.php">Update Basic Information</a>
-			<a href = "addnotice.php"> Add Notice </a>
 			<a href="logout.php">Sign Out</a>
 		</div>
