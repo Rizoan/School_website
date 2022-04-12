@@ -117,7 +117,7 @@
 		<span style="color:red;"><?php echo $errorField[9];?></span><br>
 		
 		
-		<input type="submit" value="Submit"> 
+		<input type="submit" value="Update"> 
 	</form>
 
 	</p>
