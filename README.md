@@ -7,6 +7,7 @@ Database
       - admin: id, username, password
       - teachers: id, name, designation, joining date, email, country, others
       - basicinfo: id, schoolname, moto, estdate, hpname, about, contact, server, user, pass, dbName;
+
 Setup myProject:
   - Copy the mysite folder into ../xampp/htdocs/
   - Run xampp server
