@@ -3,10 +3,11 @@ Design a school or college website
 
 
 Database
-  - There are therr tables:
+  - There are four tables:
       - admin: id, username, password
       - teachers: id, name, designation, joining date, email, country, others
       - basicinfo: id, schoolname, moto, estdate, hpname, about, contact, server, user, pass, dbName;
+      - notice: id, title, description, lastdate,filepath
 
 Setup myProject:
   - Copy the mysite folder into ../xampp/htdocs/
